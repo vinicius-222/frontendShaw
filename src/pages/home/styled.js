@@ -4,16 +4,19 @@ export const PageContainer = styled.div`
     display:flex;
     background-color:#FFF;
     flex-direction:column;
+    margin-top:10px;
 
     .BadyContainer{
         display:flex;
         justify-content:center;
-        flex-direction:column;
+        flex-direction:row;
         align-items:center;
         width:100%;
+        height:500px;
         flex-wrap:wrap;
         border-radius:5px;
         margin-bottom:10px;
+        overflow:scroll;
         
         .adItem {
             display:flex;
@@ -33,7 +36,7 @@ export const PageContainer = styled.div`
         align-items:flex-end;
         flex:1;
         margin:15px 0;
-        margin-top:150px;
+        margin-top:10px;
         padding-right:50px;
 
         .pagItem{

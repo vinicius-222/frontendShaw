@@ -4,10 +4,20 @@ import useApi from '../../helpers/front-endAPI';
 import AdItem from '../../components/partials/AdItem';
 import { LoadTela } from '../../components/Loading';
 
+var l = 0;
 const Home = (props) => {
     const api = useApi();
     const [user, setUser] = useState([]);
-    const [userDetails, setUserDetails] = useState([]);
+    const [userDetails, setUserDetails] = useState([
+                                                     {NmPessoa:''},
+                                                     {DsFaxEntrega:''},
+                                                     {DtNascimento:''},
+                                                     {DsLogin:''},
+                                                     {DsLogradouroCobranca:''},
+                                                     {NrLogradouroCobranca:''},
+                                                     {IdBairo:''},
+                                                     {IdCidade:''}
+                                                    ]);
     const [countUser, setCountUser] = useState(0);
     const [pageCount, setPageCount] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
@@ -17,6 +27,7 @@ const Home = (props) => {
     const getCountUser = async()=>{
         const json = await api.getCount();
         setCountUser(json.Count);
+        l = json.Count;
     }
 
     const getUser = async() => {
@@ -58,25 +69,24 @@ const Home = (props) => {
     }
 
     useEffect(()=>{
-        getUser();
         getCountUser();
     },[])
 
     useEffect(()=>{
         if(1 > 0) {
-            setPageCount(Math.ceil( countUser / user.length));
+            setPageCount(Math.ceil( l / user.length));
         } else {
             setPageCount( 0 );
         }
-    },[countUser]);
+    },[l]);
 
     useEffect(() =>{
-        setLoading(true);
-        getUser();
+        setLoading(true)
+       
         setTimeout(()=>{
+            getUser();
             setLoading(false);
-        },1000)
-        
+        },500)
     },[currentPage])
 
     let pagination = [];
@@ -86,8 +96,8 @@ const Home = (props) => {
 
     return(
         <PageContainer>
-            {loading &&
-                <LoadTela visible={loading} height={100} width={100} color={'#FF0000'}/>
+            {loading && 
+                <LoadTela  visible={loading}/>
             }
             <div className="BadyContainer">
                 {user && 
@@ -100,7 +110,7 @@ const Home = (props) => {
             </div>
             <div className="pagination">
                 {pagination.map((i,k)=>
-                    <div onClick={()=>setCurrentPage(i)} className={i===currentPage?'pagItem active':'pagItem'}>{i}</div>  
+                    <div onClick={()=>setCurrentPage(i)}  key={k} className={i===currentPage?'pagItem active':'pagItem'}>{i}</div>  
                 )}
             </div>
             <div  style={{display: modal ? "flex" : "none"}} className="WindowArea">

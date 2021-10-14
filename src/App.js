@@ -2,13 +2,15 @@ import './App.css';
 import { BrowserRouter } from 'react-router-dom';
 
 import { PageContainer } from './components/MainComponents';
-import Home from './pages/home';
+import Route from './Route';
+import Header from './components/partials/Header';
 
 function App() {
   	return (
     	<BrowserRouter>
 			<PageContainer>
-				<Home/>
+				<Header/>
+				<Route/>
 			</PageContainer>
     	</BrowserRouter>
   	);

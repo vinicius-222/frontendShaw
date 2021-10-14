@@ -27,7 +27,11 @@ export default (props) => {
                 <div className="itemName">{props.data.NmPessoa}</div>
                 <div className="areaButton">
                     <div className="areaDetail" onClick={AddClick}>Details</div>
-                    <div className="areaRepos">Repositorio</div>
+                    <div className="areaRepos">
+                        <Link to="/repository">
+                            Repository
+                        </Link>
+                    </div>
                 </div>
             </div>
             

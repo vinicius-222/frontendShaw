@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import ReactLoading from 'react-loading';
 import styled from 'styled-components';
 
-const Container = styled.div`
+const ContainerLoad = styled.div`
     position:fixed;
     left:0;
     top:0;
@@ -17,7 +17,7 @@ const Container = styled.div`
     opacity:0;
 `;
 
-const WindowArea = styled.div`
+const WindowAreaLoad = styled.div`
     display:flex;
     justify-content:center;
     align-items:center;
@@ -45,19 +45,19 @@ export const LoadTela = (props) => {
 
     useEffect(()=>{
         if(props.visible){
-            document.querySelector('.WindowBody').style.opacity = 0.3;
-            document.querySelector('.WindowArea').style.opacity = 1;
+            document.querySelector('.WindowBodyLoad').style.opacity = 0.3;
+            document.querySelector('.WindowAreaLoad').style.opacity = 1;
         }else{
-            document.querySelector('.WindowBody').style.opacity = 0;
+            document.querySelector('.WindowBodyLoad').style.opacity = 0;
             document.querySelector('.WindowArea').style.opacity = 0;
         }
     },[props.visible])
     return(
         <>
-            <Container className="WindowBody" style={{display: props.visible ? 'flex' : 'none'}}></Container>
-            <WindowArea className="WindowArea">
+            <ContainerLoad className="WindowBodyLoad" style={{display: props.visible ? 'flex' : 'none'}}></ContainerLoad>
+            <WindowAreaLoad className="WindowAreaLoad">
                 <ReactLoading type="spinningBubbles" color={props.color ? props.color : '#FF0000'} height={props.heght ? props.height : '40px'} width={props.width ? props.width : '40px'}/>
-            </WindowArea>
+            </WindowAreaLoad>
         </>
     )
 }

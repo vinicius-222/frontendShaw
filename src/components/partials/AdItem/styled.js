@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Item = styled.div`
+
     .adItem{
         display:flex;
         .itemId{
@@ -25,7 +26,8 @@ export const Item = styled.div`
                 cursor:pointer;
             }
 
-            .areaRepos{
+            .areaRepos a{
+                text-decoration:none;
                 display:flex;
                 margin:0px 10px;
                 background-color:#FF0000;
