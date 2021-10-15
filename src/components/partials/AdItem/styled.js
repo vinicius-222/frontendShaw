@@ -26,7 +26,7 @@ export const Item = styled.div`
                 cursor:pointer;
             }
 
-            .areaRepos a{
+            .areaRepos{
                 text-decoration:none;
                 display:flex;
                 margin:0px 10px;

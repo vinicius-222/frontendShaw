@@ -4,9 +4,14 @@ import useApi from '../../helpers/front-endAPI';
 import AdItem from '../../components/partials/AdItem';
 import { LoadTela } from '../../components/Loading';
 import Pagination from "react-js-pagination";
+import { useLocation } from 'react-router-dom';
 
 var l = 0;
 const Home = (props) => {
+    const useQueryString = () => {
+        return new URLSearchParams( useLocation().search );
+    }
+    const query = useQueryString();
     const api = useApi();
     const [user, setUser] = useState([]);
     const [userDetails, setUserDetails] = useState([
@@ -21,7 +26,7 @@ const Home = (props) => {
                                                     ]);
     const [countUser, setCountUser] = useState(0);
     const [pageCount, setPageCount] = useState(0);
-    const [currentPage, setCurrentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState(query.get('currentPage') ? parseInt(query.get('currentPage')) : 1);
     const [loading, setLoading] = useState(false);
     const [modal, setModal] = useState(false);
 
@@ -98,7 +103,7 @@ const Home = (props) => {
             <div className="BadyContainer">
                 {user && 
                     user.map((i, k) =>
-                        <AdItem className="adItem" key={k} data={i} onClick={()=>{
+                        <AdItem className="adItem" currentPage={currentPage} key={k} data={i} onClick={()=>{
                             handleOpemModal(i.IdPessoa);
                         }}/>
                     )

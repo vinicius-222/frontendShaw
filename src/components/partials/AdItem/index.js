@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import { Item } from './styled';
 
 
@@ -8,6 +8,13 @@ export default (props) => {
     
     const AddClick = () => {
         props.onClick();
+    }
+
+    const handleSubmit = (e) => {
+        console.log(props.currentPage);
+        e.preventDefault();
+        Cookies.set('currentPage', props.currentPage, {expires:999});
+        window.location.href = `/repository?IdPessoa=${props.data.IdPessoa}`;
     }
 
     useEffect(() => {
@@ -27,10 +34,10 @@ export default (props) => {
                 <div className="itemName">{props.data.NmPessoa}</div>
                 <div className="areaButton">
                     <div className="areaDetail" onClick={AddClick}>Details</div>
-                    <div className="areaRepos">
-                        <Link to={`/repository?IdPessoa=${props.data.IdPessoa}`}>
+                    <div className="areaRepos" onClick={handleSubmit}>
+                        
                             Repository
-                        </Link>
+
                     </div>
                 </div>
             </div>
