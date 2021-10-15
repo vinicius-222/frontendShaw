@@ -28,7 +28,7 @@ export default (props) => {
                 <div className="areaButton">
                     <div className="areaDetail" onClick={AddClick}>Details</div>
                     <div className="areaRepos">
-                        <Link to="/repository">
+                        <Link to={`/repository?IdPessoa=${props.data.IdPessoa}`}>
                             Repository
                         </Link>
                     </div>

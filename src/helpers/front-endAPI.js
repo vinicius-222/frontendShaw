@@ -46,6 +46,13 @@ const frontendAPI = {
             '/users/'+Id+'/details',
         )
         return json
+    },
+
+    getRepos:async (Id) => {
+        const json = await apiFetchGet(
+            '/users/'+Id+'/repos',
+        )
+        return json
     }
 }
 

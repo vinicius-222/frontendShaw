@@ -3,6 +3,7 @@ import { PageContainer } from './styled';
 import useApi from '../../helpers/front-endAPI';
 import AdItem from '../../components/partials/AdItem';
 import { LoadTela } from '../../components/Loading';
+import Pagination from "react-js-pagination";
 
 var l = 0;
 const Home = (props) => {
@@ -89,11 +90,6 @@ const Home = (props) => {
         },500)
     },[currentPage])
 
-    let pagination = [];
-    for(let i=1;i<=pageCount;i++) {
-        pagination.push(i); 
-    }
-
     return(
         <PageContainer>
             {loading && 
@@ -109,9 +105,15 @@ const Home = (props) => {
                 }
             </div>
             <div className="pagination">
-                {pagination.map((i,k)=>
-                    <div onClick={()=>setCurrentPage(i)}  key={k} className={i===currentPage?'pagItem active':'pagItem'}>{i}</div>  
-                )}
+                <Pagination
+                    activePage={currentPage}
+                    itemsCountPerPage={30}
+                    totalItemsCount={l}
+                    pageRangeDisplayed={5}
+                    onChange={(i)=>{setCurrentPage(i)}}
+                    itemClass="page-item"
+                    linkClass="page-link"
+                />
             </div>
             <div  style={{display: modal ? "flex" : "none"}} className="WindowArea">
                 <div className="WindowBody">
